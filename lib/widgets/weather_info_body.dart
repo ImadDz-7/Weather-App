@@ -7,19 +7,31 @@ class WeatherInfoBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text(
+      children: [
+        const Text(
           'Algeria',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
+        const Text(
           'Updated at : 15:02',
           style: TextStyle(
             fontSize: 18,
           ),
+        ),
+        Row(
+          children: const [
+            Image(
+              image: AssetImage(''),
+            ),
+            Text(
+              '28',
+              style: TextStyle(fontSize: 22),
+            ),
+            
+          ],
         ),
       ],
     );
