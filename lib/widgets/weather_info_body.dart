@@ -6,6 +6,7 @@ class WeatherInfoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         Text(
           'Algeria',
@@ -14,7 +15,12 @@ class WeatherInfoBody extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(''),
+        Text(
+          'Updated at : 15:02',
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
       ],
     );
   }
