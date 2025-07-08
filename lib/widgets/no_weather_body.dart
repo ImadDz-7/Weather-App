@@ -10,6 +10,7 @@ class NoWeatherBody extends StatelessWidget {
       children: const [
         Image(
           image: AssetImage('assets/Noweather.png'),
+          width: 300,
         ),
         Text(
           textAlign: TextAlign.center,
