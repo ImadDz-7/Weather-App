@@ -25,7 +25,19 @@ class WeatherModel {
       temp: json['forecast']['forecastday'][0]['day']['avgtemp_c'],
       maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],
       minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
-      weatherCondition: json['forecast']['forecastday'][0]['day']['condition']['text'],
+      weatherCondition: json['forecast']['forecastday'][0]['day']['condition']
+          ['text'],
+    );
+  }
+
+  factory WeatherModel.empty() {
+    return WeatherModel(
+      cityName: '',
+      date: '',
+      temp: 0,
+      maxTemp: 0,
+      minTemp: 0,
+      weatherCondition: '',
     );
   }
 }

@@ -18,14 +18,7 @@ class WeatherService {
 
       return weatherModel;
     } catch (e) {
-      return WeatherModel(
-        cityName: '',
-        date: '',
-        temp: 0,
-        maxTemp: 0,
-        minTemp: 0,
-        weatherCondition: '',
-      );
+      return WeatherModel.empty();
     }
   }
 }
