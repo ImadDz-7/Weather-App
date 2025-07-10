@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:weather/models/weather_model.dart';
 
@@ -10,15 +12,20 @@ class WeatherService {
 
   Future<WeatherModel> getCurrentWeather({required String cityName}) async {
     try {
-      Response response = await dio.get(
-          '$baseUrl/forecast.json?key=$apiKey&q=$cityName&days=5');
+      Response response = await dio
+          .get('$baseUrl/forecast.json?key=$apiKey&q=$cityName&days=5');
       Map<String, dynamic> jsonData = response.data;
 
       WeatherModel weatherModel = WeatherModel.fromJson(jsonData);
 
       return weatherModel;
+    } on DioException catch (e) {
+      final String errMessage = e.response?.data['error']['message'] ??
+          'Oops there was an error, try later!';
+      throw Exception(errMessage);
     } catch (e) {
-      return WeatherModel.empty();
+      log(e.toString());
+      throw Exception('Oops there was an error, try later!');
     }
   }
 }
