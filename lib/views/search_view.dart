@@ -22,6 +22,7 @@ class SearchView extends StatelessWidget {
               WeatherModel weatherModel = await WeatherService(Dio())
                   .getCurrentWeather(cityName: value);
               log(weatherModel.cityName);
+              Navigator.of(context).pop();
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
