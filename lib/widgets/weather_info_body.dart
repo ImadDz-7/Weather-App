@@ -18,9 +18,9 @@ class WeatherInfoBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        const Text(
-          'Updated at : 15:02',
-          style: TextStyle(
+        Text(
+          'Updated at : ${weatherModel.date.hour}:${weatherModel.date.minute}',
+          style: const TextStyle(
             fontSize: 18,
           ),
         ),
@@ -33,7 +33,7 @@ class WeatherInfoBody extends StatelessWidget {
               image: NetworkImage('https:${weatherModel.image!}'),
             ),
              Text(
-              weatherModel.temp.toString(),
+              '${weatherModel.temp}°',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
