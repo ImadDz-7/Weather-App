@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:weather/models/weather_model.dart';
 
 class WeatherInfoBody extends StatelessWidget {
-  const WeatherInfoBody({super.key});
+  const WeatherInfoBody({super.key, required this.weatherModel});
+  final WeatherModel weatherModel;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'Algeria',
-          style: TextStyle(
+        Text(
+          weatherModel.cityName,
+          style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
@@ -30,27 +32,27 @@ class WeatherInfoBody extends StatelessWidget {
             const Image(
               image: AssetImage('assets/cloudy.png'),
             ),
-            const Text(
-              '28',
-              style: TextStyle(
+             Text(
+              weatherModel.temp.toString(),
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('maxTemp: 30'),
-                Text('minTemp: 17'),
+              children: [
+                Text('maxTemp: ${weatherModel.maxTemp}'),
+                Text('minTemp: ${weatherModel.minTemp}'),
               ],
             ),
             const SizedBox(width: 10),
           ],
         ),
         const SizedBox(height: 46),
-        const Text(
-          'Sunny',
-          style: TextStyle(
+        Text(
+          weatherModel.weatherCondition,
+          style: const TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
