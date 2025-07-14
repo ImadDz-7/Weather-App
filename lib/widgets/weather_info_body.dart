@@ -29,8 +29,8 @@ class WeatherInfoBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 10),
-            const Image(
-              image: AssetImage('assets/cloudy.png'),
+            Image(
+              image: NetworkImage('https:${weatherModel.image!}'),
             ),
              Text(
               weatherModel.temp.toString(),
@@ -42,8 +42,8 @@ class WeatherInfoBody extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('maxTemp: ${weatherModel.maxTemp}'),
-                Text('minTemp: ${weatherModel.minTemp}'),
+                Text('maxTemp: ${weatherModel.maxTemp.round()}'),
+                Text('minTemp: ${weatherModel.minTemp.round()}'),
               ],
             ),
             const SizedBox(width: 10),
