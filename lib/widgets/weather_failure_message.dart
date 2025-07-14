@@ -10,19 +10,21 @@ class WeatherFailureMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Image(
-          image: AssetImage('assets/Noweather2.png'),
-          width: 300,
-        ),
-        Text(
-          textAlign: TextAlign.center,
-          message,
-          style: const TextStyle(fontSize: 21),
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Image(
+            image: AssetImage('assets/Noweather2.png'),
+            width: 300,
+          ),
+          Text(
+            textAlign: TextAlign.center,
+            message,
+            style: const TextStyle(fontSize: 21),
+          ),
+        ],
+      ),
     );
   }
 }
