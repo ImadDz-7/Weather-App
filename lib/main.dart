@@ -26,36 +26,29 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetWeatherCubit(),
-      child: CustomMaterialApp(),
-    );
-  }
-}
-
-class CustomMaterialApp extends StatelessWidget {
-  const CustomMaterialApp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: getThemeColor(
-          BlocProvider.of<GetWeatherCubit>(context)
-              .weatherModel?.weatherCondition,
-        ),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: getThemeColor(
+                BlocProvider.of<GetWeatherCubit>(context)
+                    .weatherModel
+                    ?.weatherCondition,
+              ),
+            ),
+            home: const HomeView(),
+          );
+        },
       ),
-      home: const HomeView(),
     );
   }
 }
 
 MaterialColor getThemeColor(String? condition) {
-  if(condition == null){
+  if (condition == null) {
     return Colors.blue;
-  }
-  else if(condition == 'Sunny') {
+  } else if (condition == 'Sunny') {
     return Colors.orange;
   } else if (condition == 'Partly cloudy') {
     return Colors.yellow;
