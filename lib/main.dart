@@ -26,10 +26,65 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetWeatherCubit(),
-      child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomeView(),
-        ),
+      child: CustomMaterialApp(),
     );
+  }
+}
+
+class CustomMaterialApp extends StatelessWidget {
+  const CustomMaterialApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: getThemeColor(
+          BlocProvider.of<GetWeatherCubit>(context)
+              .weatherModel?.weatherCondition,
+        ),
+      ),
+      home: const HomeView(),
+    );
+  }
+}
+
+MaterialColor getThemeColor(String? condition) {
+  if(condition == null){
+    return Colors.blue;
+  }
+  else if(condition == 'Sunny') {
+    return Colors.orange;
+  } else if (condition == 'Partly cloudy') {
+    return Colors.yellow;
+  } else if (condition == 'Cloudy' || condition == 'Overcast') {
+    return Colors.grey;
+  } else if (condition == 'Mist' ||
+      condition == 'Fog' ||
+      condition == 'Freezing fog') {
+    return Colors.lightBlue;
+  } else if (condition.contains('Patchy light') ||
+      condition.contains('Patchy rain possible')) {
+    return Colors.lightGreen;
+  } else if (condition.contains('Light rain') ||
+      condition.contains('Moderate rain at times') ||
+      condition.contains('Heavy rain')) {
+    return Colors.green;
+  } else if (condition.contains('Freezing drizzle') ||
+      condition.contains('Heavy freezing drizzle')) {
+    return Colors.blue;
+  } else if (condition.contains('Snow') ||
+      condition.contains('Blizzard') ||
+      condition.contains('Heavy snow')) {
+    return Colors.blueGrey;
+  } else if (condition.contains('Sleet')) {
+    return Colors.blue;
+  } else if (condition.contains('Thundery outbreaks') ||
+      condition.contains('thunder')) {
+    return Colors.deepPurple;
+  } else {
+    return Colors.blue; // Default color for unspecified conditions
   }
 }
